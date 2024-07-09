@@ -1,6 +1,7 @@
 import { InputCreateProductDto, OutputCreateProductDto } from "./create.product.dto";
 import ProductFactory from "../../../domain/product/factory/product.factory";
 import ProductRepositoryInterface from "../../../domain/product/repository/product-repository.interface";
+import { v4 as uuid } from "uuid";
 
 export default class CreateProductUseCase {
   private productRepository: ProductRepositoryInterface;
