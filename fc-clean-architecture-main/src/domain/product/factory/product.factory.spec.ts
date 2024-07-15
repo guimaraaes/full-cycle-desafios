@@ -1,3 +1,4 @@
+import Product from "../entity/product";
 import ProductFactory from "./product.factory";
 
 describe("Product factory unit test", () => {
@@ -24,4 +25,35 @@ describe("Product factory unit test", () => {
       "Product type not supported"
     );
   });
+
+  it("should throw an error when product type is not supported", () => {
+    expect(() => ProductFactory.create("c", "Product C", 1)).toThrowError(
+      "Product type not supported"
+    );
+  });
+
+  it("should throw error when id is empty", () => {
+    expect(() => {
+      const product = new Product("", "name", 100);
+    }).toThrowError("product: Id is required");
+  });
+
+  it("should throw error when name is empty", () => {
+    expect(() => {
+      const product = new Product("1", "", 100);
+    }).toThrowError("product: Name is required");
+  });
+
+  it("should throw error when price is zero or negative", () => {
+    expect(() => {
+      const product = new Product("1", "name", -10);
+    }).toThrowError("product: price must be greater than 0");
+  });
+
+  it("should throw error when name is empty and price is zero or negative", () => {
+    expect(() => {
+      const product = new Product("1", "", -10);
+    }).toThrowError("product: Name is required,product: price must be greater than 0");
+  });
+
 });

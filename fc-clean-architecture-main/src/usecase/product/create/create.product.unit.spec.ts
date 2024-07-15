@@ -49,7 +49,7 @@ describe("Unit test create product use case", () => {
     const invalidInput = { ...input, price: -1 };
 
     await expect(createProductUseCase.execute(invalidInput)).rejects.toThrow(
-      "Price must be greater than zero"
+      "price must be greater than 0"
     );
   });
 
