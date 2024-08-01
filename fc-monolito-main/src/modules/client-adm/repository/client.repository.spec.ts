@@ -7,7 +7,7 @@ import Address from "../../@shared/domain/value-object/address"
 
 describe("Client Repository test", () => {
 
-  let sequelize: Sequelize;
+  let sequelize: Sequelize
 
   beforeEach(async () => {
     sequelize = new Sequelize({
@@ -15,15 +15,15 @@ describe("Client Repository test", () => {
       storage: ':memory:',
       logging: false,
       sync: { force: true }
-    });
+    })
 
-    await sequelize.addModels([ClientModel]);
-    await sequelize.sync();
-  });
+    sequelize.addModels([ClientModel])
+    await sequelize.sync()
+  })
 
   afterEach(async () => {
-    await sequelize.close();
-  });
+    await sequelize.close()
+  })
 
   it("should create a client", async () => {
 
@@ -41,27 +41,27 @@ describe("Client Repository test", () => {
         "88888-888"
       )
       // address: "Rua 123",
-    });
+    })
 
-    const repository = new ClientRepository();
-    await repository.add(client);
+    const repository = new ClientRepository()
+    await repository.add(client)
 
-    const clientDb = await ClientModel.findOne({ where: { id: "1" } });
+    const clientDb = await ClientModel.findOne({ where: { id: "1" } })
 
-    expect(clientDb).toBeDefined();
-    expect(clientDb.id).toEqual(client.id.id);
-    expect(clientDb.name).toEqual(client.name);
-    expect(clientDb.email).toEqual(client.email);
-    expect(clientDb.document).toEqual(client.document);
-    expect(clientDb.street).toEqual(client.address.street);
-    expect(clientDb.number).toEqual(client.address.number);
-    expect(clientDb.complement).toEqual(client.address.complement);
-    expect(clientDb.city).toEqual(client.address.city);
-    expect(clientDb.state).toEqual(client.address.state);
-    expect(clientDb.zipcode).toEqual(client.address.zipCode);
-    expect(clientDb.createdAt).toStrictEqual(client.createdAt);
-    expect(clientDb.updatedAt).toStrictEqual(client.updatedAt);
-  });
+    expect(clientDb).toBeDefined()
+    expect(clientDb.id).toEqual(client.id.id)
+    expect(clientDb.name).toEqual(client.name)
+    expect(clientDb.email).toEqual(client.email)
+    expect(clientDb.document).toEqual(client.document)
+    expect(clientDb.street).toEqual(client.address.street)
+    expect(clientDb.number).toEqual(client.address.number)
+    expect(clientDb.complement).toEqual(client.address.complement)
+    expect(clientDb.city).toEqual(client.address.city)
+    expect(clientDb.state).toEqual(client.address.state)
+    expect(clientDb.zipcode).toEqual(client.address.zipCode)
+    expect(clientDb.createdAt).toStrictEqual(client.createdAt)
+    expect(clientDb.updatedAt).toStrictEqual(client.updatedAt)
+  })
 
   it("should find a client", async () => {
 

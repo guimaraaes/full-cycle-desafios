@@ -11,8 +11,8 @@ export default class ProductRepository implements ProductGateway {
       description: product.description,
       purchasePrice: product.purchasePrice,
       stock: product.stock,
-      createdAt: product.createdAt,
-      updatedAt: product.updatedAt
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
   }
   async find(id: string): Promise<Product> {

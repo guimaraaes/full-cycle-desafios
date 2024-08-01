@@ -6,7 +6,7 @@ import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
 })
 export class ClientModel extends Model {
   @PrimaryKey
-  @Column({ allowNull: false, autoIncrement: true, })
+  @Column({ allowNull: false })
   id: string
 
   @Column({ allowNull: false })
